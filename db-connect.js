@@ -16,16 +16,12 @@ async function run() {
         const db = client.db(dbName);
         const collection = db.collection('usercollection');
 
-        const data = {
-            firstName: "user1",
-            lastname: "usersername",
-            city: "bbk",
-            phoneNumber: "73554634233"
-        }
-
-        const insertResult = await collection.insertMany([data]);
-        console.log('Inserted document =>',insertResult);
-
+        const query = {firstName:'sumit'};
+        const update = {$set:{city:'chandigarh'}}
+        const options = {};
+        const up= await collection.updateOne(query,update,options);
+         
+        console.log(up);
 
         const findResult = await collection.find({}).toArray();
         console.log('found documents =>', findResult)
