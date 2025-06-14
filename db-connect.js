@@ -16,19 +16,11 @@ async function run() {
         const db = client.db(dbName);
         const collection = db.collection('usercollection');
 
-        const query = {firstName:'sumit'};
-        const result = await collection.deleteOne(query);
-                  
-        if(result.deletedCount===1){
-            console.log('success deletion');
-        }
-        else{
-            console.log('no doucments matched the query');
-        }
-        
+        const countResult = await collection.countDocuments({});
+        console.log(countResult);
 
         const findResult = await collection.find({}).toArray();
-        console.log('found documents =>', findResult)
+        console.log('found documents =>', findResult);
 
         return "done";
     } catch (error) {

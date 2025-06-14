@@ -1,2 +1,5 @@
-  const findResult = await collection.find({}).toArray();
-        console.log('found documents =>',findResult);
+const {
+    MongoClient
+} = require('mongodb');
+
+const url = `mongodb+srv://shankhwarsumit117:g911cCyAywMgjika@sumitdb.r1aimze.mongodb.net/`;
