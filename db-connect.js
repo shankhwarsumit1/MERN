@@ -4,7 +4,7 @@ const url = `mongodb+srv://shankhwarsumit117:g911cCyAywMgjika@sumitdb.r1aimze.mo
 
 const client = new MongoClient(url);
 
-const dbName = 'devTinder';
+const dbName = 'user1';
 
 async function run() {
     try{
@@ -14,8 +14,8 @@ async function run() {
         const db = client.db(dbName);
         const collection = db.collection('usercollection');
 
-        // const findResult = await collection.find({}).toArray();
-        // console.log('found documents =>',findResult);
+        const findResult = await collection.find({}).toArray();
+        console.log('found documents =>',findResult);
 
         return "done";
     }
