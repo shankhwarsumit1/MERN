@@ -17,11 +17,15 @@ async function run() {
         const collection = db.collection('usercollection');
 
         const query = {firstName:'sumit'};
-        const update = {$set:{city:'chandigarh'}}
-        const options = {};
-        const up= await collection.updateOne(query,update,options);
-         
-        console.log(up);
+        const result = await collection.deleteOne(query);
+                  
+        if(result.deletedCount===1){
+            console.log('success deletion');
+        }
+        else{
+            console.log('no doucments matched the query');
+        }
+        
 
         const findResult = await collection.find({}).toArray();
         console.log('found documents =>', findResult)
