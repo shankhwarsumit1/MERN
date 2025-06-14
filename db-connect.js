@@ -1,4 +1,6 @@
-const { MongoClient } = require('mongodb');
+const {
+    MongoClient
+} = require('mongodb');
 
 const url = `mongodb+srv://shankhwarsumit117:g911cCyAywMgjika@sumitdb.r1aimze.mongodb.net/`;
 
@@ -7,24 +9,34 @@ const client = new MongoClient(url);
 const dbName = 'user1';
 
 async function run() {
-    try{
-       
+    try {
+
         await client.connect();
         console.log('connected successfully to server');
         const db = client.db(dbName);
         const collection = db.collection('usercollection');
 
+        const data = {
+            firstName: "user1",
+            lastname: "usersername",
+            city: "bbk",
+            phoneNumber: "73554634233"
+        }
+
+        const insertResult = await collection.insertMany([data]);
+        console.log('Inserted document =>',insertResult);
+
+
         const findResult = await collection.find({}).toArray();
-        console.log('found documents =>',findResult);
+        console.log('found documents =>', findResult)
 
         return "done";
-    }
-    catch(error){
+    } catch (error) {
         console.log(error);
     }
 }
 
 run()
- .then(console.log)
- .catch(console.error)
- .finally(()=> client.close());
+    .then(console.log)
+    .catch(console.error)
+    .finally(() => client.close());
